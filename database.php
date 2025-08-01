@@ -1,10 +1,10 @@
 <?php
 require_once __DIR__ . '/config.php';
 
-$hostName="127.0.0.1";
-$dbUser = "root";
-$dbPassword = "";
-$dbName = "login_register";
+$hostName="sql.freedb.tech";
+$dbUser = "freedb_vtest";
+$dbPassword = "vQ%Mrgv%vW6F8SQ";
+$dbName = "freedb_login_register";
 mysqli_report(MYSQLI_REPORT_OFF);
 
 
