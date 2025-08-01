@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/config.php';
+require __DIR__ . '/vendor/autoload.php';
 
 $hostName="sql.freedb.tech";
 $dbUser = "freedb_vtest";
-$dbPassword = "vQ%Mrgv%vW6F8SQ";
+$dbPassword = $_ENV['SECRET_PASS'];
 $dbName = "freedb_login_register";
 mysqli_report(MYSQLI_REPORT_OFF);
 
