@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
 
-$hostName="localhost";
+$hostName="127.0.0.1";
 $dbUser = "root";
 $dbPassword = "";
 $dbName = "login_register";
