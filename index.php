@@ -1,22 +1,35 @@
 <?php
 require_once __DIR__ . '/config.php';
-
 if (isset($_SESSION["user"])) {
    header("Location: contact.php");
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+        </script>
         <title>Simple PHP</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     </head>
     <body>
-        
+        <div id="captcha" data-sitekey="<?php echo $_ENV['RE_PASSV2']; ?>"></div>
+        <script type="text/javascript">
+            var onloadCallback = function() {
+                const siteKey = document.getElementById("captcha").dataset.sitekey;
+                grecaptcha.render('html_element', {
+                'sitekey' : siteKey
+                });
+                
+            };
+        </script>
         <div class="container">
         <?php 
             if (isset($_SESSION['flash_message'])) {
@@ -44,7 +57,7 @@ if (isset($_SESSION["user"])) {
         ?>
             <div class="register-form">
                 <h3>Register</h3>
-                <form action="userHandler.php" method="post">
+                <form action="userHandler/registerHandler.php" method="post">
                     <div class="form-group">
                         <label for="name">Nimi:</label>
                         <input id="name" class="form-control"  name="name" type="text" placeholder="name">
@@ -58,11 +71,13 @@ if (isset($_SESSION["user"])) {
                         <input id="password" class="form-control" name="password" type="password" >
                     </div>
                     <div class="form-group">
-                        <button name="submit" type="submit" class="btn btn-primary">Register</button>
+                        <div id="html_element"></div>
+                        <button name="submit" type="submit" class="btn btn-primary mt-2">Register</button>
                         <a class="link" href="login.php"> Aready registered?</a>
                     </div>
                 </form>
             </div>
+            
         </div>
     </body>
 
